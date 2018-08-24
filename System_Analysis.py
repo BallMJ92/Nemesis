@@ -66,6 +66,6 @@ class SystemAnalysis:
                   
 
 if __name__ == "__main__":
-    sysanl = SystemAnalysis()
-    sysanl.main()
+    analyse = SystemAnalysis()
+    analyse.main()
         
