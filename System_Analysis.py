@@ -13,8 +13,7 @@ class SystemAnalysis:
             elif platform == "win32":
                 return "Windows"            
             else:
-                raise Exception
-                
+                raise Exception                
         except Exception:
             pass
         return False
@@ -40,12 +39,6 @@ class SystemAnalysis:
         
         except Exception:
             return False
-        
-    def local_processes(self):
-        winx = wmi.WMI()
-
-        for process in winx.Win32_Process():
-            return process.ProcessId, process.Name
 
     def cpu_activity(self):
         self.detailing = psutil.cpu_times()
