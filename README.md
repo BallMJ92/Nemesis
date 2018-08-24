@@ -4,4 +4,4 @@
 
 # Nemesis
 
-Suite of anti-malware system monitoring and remediation tools
+Suite of anti-malware system monitoring and remediation tools to combat common and uncommon malware strains.
