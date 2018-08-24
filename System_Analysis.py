@@ -13,7 +13,8 @@ class SystemAnalysis:
             elif platform == "win32":
                 return "Windows"            
             else:
-                raise Exception                
+                raise Exception
+                
         except Exception:
             pass
         return False
@@ -50,22 +51,44 @@ class SystemAnalysis:
             return False
 
     def active_processes(self):
-        process_names = [proc.name() for proc in psutil.process_iter()]
-        return process_names
+        #Extracting process pids and storing in list
+        process_names = [proc.ppid() for proc in psutil.process_iter()]
+        arch = self.system_architecture()
+
+        #Iterating over stored process pids
+        for i in range(0, len(process_names)):
+
+        #return process_names
+            try:
+                p = psutil.Process(process_names[i])
+                if arch == "Windows":
+                    with p.oneshot():
+                        print(p.name())
+                        print("pid: ",process_names[i])
+                        print("cpu usage: ", p.cpu_percent())
+                        print("memory: ",p.memory_info())
+                elif arch == "Linux":
+                    with p.oneshot():
+                        print(p.name())
+                        print(p.cpu_percent())
+                        print(p.memory_full_info())
+            except:
+                pass            
 
     def main(self):
-        print(self.network_status())
-        while True:
+        #print(self.network_status())
+        self.active_processes()
+        """while True:
             if self.cpu_activity() == True:
                 print("---CPU WARNING---")
                 print("%d\n%s\n%s" % (self.usage, self.detailing, self.frequency))
             else:
                 print("---SYSTEM STABLE---")
                 print("%d\n%s\n%s\n" % (self.usage, self.detailing, self.frequency))
-            time.sleep(2)
+            time.sleep(2)"""
                   
 
 if __name__ == "__main__":
-    analyse = SystemAnalysis()
-    analyse.main()
+    sysanl = SystemAnalysis()
+    sysanl.main()
         
