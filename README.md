@@ -1,4 +1,3 @@
 # Nemesis
-**Currently in Development**
 
-Suite of security tools developed in Python
+Suite of anti-malware system monitoring and remediation tools
