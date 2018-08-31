@@ -51,5 +51,5 @@ class SystemDumper:
         print(self.local_drives())
 
 if __name__ == "__main__":
-    dump = SystemDumper()
-    dump.main()
+    sysdump = SystemDumper()
+    sysdump.main()
